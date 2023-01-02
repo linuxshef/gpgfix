@@ -1,0 +1,68 @@
+#!/bin/bash
+clear
+echo '
+
+
+                           Welcome GPG-FIX !
+             |-------------------------------------------|
+             |                                           |
+             |                                           |
+             |          Fix GPG Manjaro -> ( 1  )        |
+             |                                           |
+             |                                           |
+             |          Fix GPG Archlinux -> ( 2 )       |
+             |                                           |
+             |                                           |
+             |-------------------------------------------|
+
+
+'
+    echo -n "
+
+                -> Enter  (  1  )  or  (  2  )  : "
+                
+      read main_menu
+      case "$main_menu" in
+         "1" )
+sudo pacman-mirrors --fasttrack 
+sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
+
+sudo rm -r /etc/pacman.d/gnupg
+
+sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
+
+sudo pacman-key --init
+
+sudo pacman-key --populate archlinux manjaro
+
+sudo pacman-key --refresh-keys
+
+sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
+           ;;
+         "2" )
+sudo pacman -Sy gnupg archlinux-keyring --noconfirm
+
+sudo rm -r /etc/pacman.d/gnupg
+
+sudo pacman -Sy gnupg archlinux-keyring --noconfirm
+
+sudo pacman-key --init
+
+sudo pacman-key --populate archlinux
+
+sudo pacman-key --refresh-keys
+
+sudo pacman -Sy gnupg archlinux-keyring --noconfirm
+      esac
+echo '
+
+             |-------------------------------------------|
+             |                                           |
+             |                                           |
+             |                                           |
+             |                   Done !  :)              |
+             |                                           |
+             |                                           |
+             |                                           |
+             |-------------------------------------------|
+'
