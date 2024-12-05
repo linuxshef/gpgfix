@@ -1,15 +1,15 @@
 #!/bin/bash
 clear
-echo -e "\n\tWelcome GPG-FIX !\n
-             |-------------------------------------------|
-             |                                           |
-             |        Fix GPG Manjaro -> (  1  )         |
-             |        Fix GPG Archlinux -> (  2  )       |
-             |        Fix GPG BlackArch -> (  3  )       |
-             |     Fix GPG BlackArch + Manjaro  (  4  )  |
-             |    Fix GPG BlackArch + Archlinux  (  5  ) |
-             |                                           |
-             |-------------------------------------------|\n
+echo -e                             "\n\tWelcome GPG-FIX !\n
+                           |-------------------------------------------|                       |
+                           | Fix GPG   Manjaro      -->     ( 1 )         | 
+                           | Fix GPG   Manjaro + Chaotic -> ( 2 )         |
+                           | Fix GPG   BlackArch + Manjaro  (  4  ) 
+                             Fix GPG   Archlinux -> (  2  )       |
+                           | Fix GPG   BlackArch -> (  3  )       |
+                           | Fix GPG   BlackArch + Archlinux  (  5  ) |
+                           |                                           |
+                           |-------------------------------------------|\n
 
 \n\tEnter: " 
 
