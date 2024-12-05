@@ -1,63 +1,94 @@
 #!/bin/bash
 clear
-echo -e                             "\n\tWelcome GPG-FIX !\n
-                           |-------------------------------------------|                       |
-                           | Fix GPG   Manjaro      -->     ( 1 )         | 
-                           | Fix GPG   Manjaro + Chaotic -> ( 2 )         |
-                           | Fix GPG   BlackArch + Manjaro  (  4  ) 
-                             Fix GPG   Archlinux -> (  2  )       |
-                           | Fix GPG   BlackArch -> (  3  )       |
-                           | Fix GPG   BlackArch + Archlinux  (  5  ) |
-                           |                                           |
-                           |-------------------------------------------|\n
-
-\n\tEnter: " 
-
+echo -e "
+ \t 
+                                                 Welcome GPG-FIX !
+                                |--------------------------------------------------|
+                                | ( 1 )-->  Fix GPG  Manjaro                       | 
+                                | ( 2 )-->  Fix GPG  Manjaro + Chaotic             |
+                                | ( 3 )-->  Fix GPG  Manjaro + BlackArch           |
+                                | ( 4 )-->  Fix GPG  Manjaro + Chaotic + BlackArch |
+                                |--------------------------------------------------|  
+                                | ( 5 )-->  Fix GPG  Archlinux                     |
+                                | ( 6 )-->  Fix GPG  BlackArch                     |
+                                | ( 7 )-->  Fix GPG  BlackArch + Archlinux         |
+                                |--------------------------------------------------|"
+echo -n "
+                                -> Enter number 1 ; 2 ; 3 .... : "
 read main_menu
 
 case "$main_menu" in
    "1")
-      sudo pacman-mirrors --fasttrack
-      sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
-      sudo rm -r /etc/pacman.d/gnupg
-      sudo pacman-key --init
-      sudo pacman-key --populate archlinux manjaro
-      sudo pacman-key --refresh-keys
-      sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
+   sudo pacman-mirrors --fasttrack
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux manjaro
+   sudo pacman-key --refresh-keys
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring --noconfirm
       ;;
    "2")
-      sudo pacman -Sy gnupg archlinux-keyring --noconfirm
-      sudo rm -r /etc/pacman.d/gnupg
-      sudo pacman-key --init
-      sudo pacman-key --populate archlinux
-      sudo pacman-key --refresh-keys
-      sudo pacman -Sy gnupg archlinux-keyring --noconfirm
+   sudo pacman-mirrors --fasttrack
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux manjaro chaotic
+   sudo pacman-key --refresh-keys
+   sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+   sudo pacman-key --lsign-key 3056513887B78AEB
+   sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
+   sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring chaotic-keyring chaotic-mirrorlist --noconfirm
       ;;
    "3")
-      sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
-      sudo rm -r /etc/pacman.d/gnupg
-      sudo pacman-key --init
-      sudo pacman-key --populate archlinux blackarch
-      sudo pacman-key --refresh-keys
-      sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
+   sudo pacman-mirrors --fasttrack 
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring blackarch-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux manjaro blackarch
+   sudo pacman-key --refresh-keys
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring blackarch-keyring --noconfirm
       ;;
    "4")
-      sudo pacman-mirrors --fasttrack 
-      sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring blackarch-keyring --noconfirm
-      sudo rm -r /etc/pacman.d/gnupg
-      sudo pacman-key --init
-      sudo pacman-key --populate archlinux manjaro blackarch
-      sudo pacman-key --refresh-keys
-      sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring blackarch-keyring --noconfirm
+   sudo pacman-mirrors --fasttrack
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring chaotic-keyring blackarch-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux manjaro chaotic blackarch
+   sudo pacman-key --refresh-keys
+   sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+   sudo pacman-key --lsign-key 3056513887B78AEB
+   sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
+   sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
+   sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring chaotic-keyring chaotic-mirrorlist blackarch-keyring --noconfirm
       ;;
    "5")
-      sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
-      sudo rm -r /etc/pacman.d/gnupg
-      sudo pacman-key --init
-      sudo pacman-key --populate archlinux blackarch
-      sudo pacman-key --refresh-keys
-      sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
+   sudo pacman -Sy gnupg archlinux-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux
+   sudo pacman-key --refresh-keys
+   sudo pacman -Sy gnupg archlinux-keyring --noconfirm
       ;;
+   "6")
+   sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux blackarch
+   sudo pacman-key --refresh-keys
+   sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
+      ;;
+   "7")
+   sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux blackarch
+   sudo pacman-key --refresh-keys
+   sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
 esac
 
-echo -e "\n\tDone !  :)\n"
+echo "                         |..................|        
+                               |                  |
+                               |     Done !  :)   |
+                               |                  |
+                               |..................|"   
