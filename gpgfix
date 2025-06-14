@@ -8,10 +8,12 @@ echo -e "
                                 | ( 2 )-->  Fix GPG  Manjaro + Chaotic             |
                                 | ( 3 )-->  Fix GPG  Manjaro + BlackArch           |
                                 | ( 4 )-->  Fix GPG  Manjaro + Chaotic + BlackArch |
-                                |--------------------------------------------------|  
-                                | ( 5 )-->  Fix GPG  Archlinux                     |
-                                | ( 6 )-->  Fix GPG  BlackArch                     |
-                                | ( 7 )-->  Fix GPG  BlackArch + Archlinux         |
+                                |--------------------------------------------------|
+                                | ( 5 )-->  Fix GPG  SteamOS                       |
+                                |--------------------------------------------------|
+                                | ( 6 )-->  Fix GPG  Archlinux                     |
+                                | ( 7 )-->  Fix GPG  BlackArch                     |
+                                | ( 8 )-->  Fix GPG  BlackArch + Archlinux         |
                                 |--------------------------------------------------|"
 echo -n "
                                 -> Enter number 1 ; 2 ; 3 .... : "
@@ -63,6 +65,14 @@ case "$main_menu" in
    sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring chaotic-keyring chaotic-mirrorlist blackarch-keyring --noconfirm
       ;;
    "5")
+   sudo pacman -Sy gnupg archlinux-keyring holo-keyring --noconfirm
+   sudo rm -r /etc/pacman.d/gnupg
+   sudo pacman-key --init
+   sudo pacman-key --populate archlinux holo
+   sudo pacman-key --refresh-keys
+   sudo pacman -Sy gnupg archlinux-keyring holo-keyring --noconfirm
+      ;;
+   "6")
    sudo pacman -Sy gnupg archlinux-keyring --noconfirm
    sudo rm -r /etc/pacman.d/gnupg
    sudo pacman-key --init
@@ -70,7 +80,7 @@ case "$main_menu" in
    sudo pacman-key --refresh-keys
    sudo pacman -Sy gnupg archlinux-keyring --noconfirm
       ;;
-   "6")
+   "7")
    sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
    sudo rm -r /etc/pacman.d/gnupg
    sudo pacman-key --init
@@ -78,7 +88,7 @@ case "$main_menu" in
    sudo pacman-key --refresh-keys
    sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
       ;;
-   "7")
+   "8")
    sudo pacman -Sy gnupg archlinux-keyring blackarch-keyring --noconfirm
    sudo rm -r /etc/pacman.d/gnupg
    sudo pacman-key --init
